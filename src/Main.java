@@ -32,6 +32,18 @@ public class Main {
 		clair.setEvent(Athlete.Event.SWIMMING);
 		clair.compete();
 		
+		//Create an array that store athlete.
+		
+		if(clair.isAthleteType(Athlete.AthleteType.SWIMMER)) {
+			System.out.println("clair is a swimmer");
+		}
+		
+		if(!chloe.isAthleteType(Athlete.AthleteType.SWIMMER)) {
+			System.out.println("Chloe is not a swimmer");
+		}
+		
+		
+		
 	}
 	
 }

@@ -4,6 +4,7 @@ public class Swimmer extends Athlete{
 	public Swimmer(String name) {
 		super(name);
 		swimmingComponent = new Swimming();
+		isSwimmer = true;
 	}
 
 	//Swimmer has a swimmingComponent

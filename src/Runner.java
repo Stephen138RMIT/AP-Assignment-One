@@ -4,6 +4,7 @@ public class Runner extends Athlete {
 	public Runner(String name) {
 		super(name);
 		runningComponent = new Running();
+		isRunner = true;
 	}
 	
 	public void compete() {

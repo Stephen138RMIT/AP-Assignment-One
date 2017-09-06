@@ -16,8 +16,12 @@ public class SuperAthlete extends Athlete{
 		swimmingComponent = new Swimming();
 		runningComponent = new Running();
 		cyclingComponent = new Cycling();
-		
+		isSwimmer = true;
+		isRunner = true;
+		isCyclist = true;
 	}
+	
+	
 	
 	public void compete() {
 		//Error on switch null error oops

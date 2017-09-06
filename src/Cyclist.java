@@ -5,6 +5,7 @@ public class Cyclist extends Athlete{
 	public Cyclist(String name) {
 		super(name);
 		cyclingComponent = new Cycling();
+		isCyclist = true;
 	}
 	
 	public void compete() {
