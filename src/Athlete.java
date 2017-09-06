@@ -7,7 +7,7 @@ public abstract class Athlete {
 	
 	public Athlete(String name) {
 		this.athleteName = name;
-		Event currentEvent = Event.NONE;
+		currentEvent = Event.NONE;
 	}
 	
 	public void setEvent(Event newEvent) {

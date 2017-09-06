@@ -23,7 +23,6 @@ public class SuperAthlete extends Athlete{
 		//Error on switch null error oops
 		if (currentEvent == null){
 			System.out.println("hello");
-			currentEvent = Event.NONE;
 		}
 		switch(currentEvent) {
 		case CYCLING:
