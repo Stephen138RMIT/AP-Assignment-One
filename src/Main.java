@@ -79,6 +79,7 @@ public class Main {
 			currentAthlete.compete();
 		}
 		
+		//TODO Concept finished move function to event.
 	}
 	
 }
