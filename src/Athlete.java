@@ -42,5 +42,5 @@ public abstract class Athlete {
 		return false;
 	}
 	//This method is to be overidden
-	public void complete() {};
+	public void compete() {};
 }

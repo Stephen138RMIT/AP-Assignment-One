@@ -1,3 +1,4 @@
+import java.util.*;
 
 public class Main {
 	
@@ -32,7 +33,7 @@ public class Main {
 		clair.setEvent(Athlete.Event.SWIMMING);
 		clair.compete();
 		
-		//Create an array that store athlete.
+		//recognisition of athlete
 		
 		if(clair.isAthleteType(Athlete.AthleteType.SWIMMER)) {
 			System.out.println("clair is a swimmer");
@@ -42,7 +43,41 @@ public class Main {
 			System.out.println("Chloe is not a swimmer");
 		}
 		
+		//Test Array, use reference if possible.
+		//Linked list of all athlete
+		LinkedList<Athlete> allAthlete = new LinkedList<Athlete>();
+		allAthlete.add(Joe_Swimmer);
+		allAthlete.add(chloe);
+		allAthlete.add(smith);
+		allAthlete.add(clair);
 		
+		//Get only swimmers and add them into another list.
+		
+		LinkedList<Athlete> swimmerAthlete = new LinkedList<Athlete>();
+		Iterator<Athlete> x = allAthlete.listIterator();
+		
+		while(x.hasNext()) {
+			Athlete tempAthlete = (Athlete) x.next();
+			if(tempAthlete.isAthleteType(Athlete.AthleteType.SWIMMER)) {
+				swimmerAthlete.add(tempAthlete);
+				System.out.println("added athlete");
+			}
+		}
+		
+		// Joe and clair should be competing
+		
+		Iterator<Athlete> competeX = swimmerAthlete.listIterator();
+		
+		//There is two athlete but only one competed
+		
+		System.out.println("size of swimmer athlete: " + swimmerAthlete.size());
+		
+		while(competeX.hasNext()) {
+			Athlete currentAthlete = competeX.next();
+			currentAthlete.setEvent(Athlete.Event.SWIMMING);
+			//Override should happen.
+			currentAthlete.compete();
+		}
 		
 	}
 	
