@@ -78,7 +78,7 @@ public class Driver {
 					//Don't print out error message just break and exit
 					break;
 				case 1:
-					Event anEvent = new Event();
+					Game anEvent = new Game();
 					anEvent.test();
 					break;
 				case 2:

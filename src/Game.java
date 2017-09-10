@@ -1,7 +1,7 @@
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class Event {
+public class Game {
 	//TODO remove this one test succesful and make proper event class.
 	public void test(){
 		Swimmer Joe_Swimmer = new Swimmer("Joe", "1");
