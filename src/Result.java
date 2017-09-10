@@ -1,7 +1,12 @@
+import java.io.IOException;
 import java.util.ArrayList;
+
+
 import java.util.Iterator;
 import java.util.Collections;
 import java.util.Comparator;
+
+
 
 public class Result {
 	
@@ -213,7 +218,7 @@ public class Result {
 		
 		
 		if(canCompete()) {
-			Iterator<AthleteScore> scoreIterator = scoreList.iterator();
+			//Iterator<AthleteScore> scoreIterator = scoreList.iterator();
 			System.out.println();
 			System.out.println("Game ID : " + gameID);
 			System.out.println("Predicted Winner: " + predictedWinnerID + " Name: " + getAthleteName(predictedWinnerID));
@@ -228,18 +233,18 @@ public class Result {
 			int charsWritten = 0;
 			long start = System.currentTimeMillis();
 			//This keep track of current athlete timeScore.
-			double timeScore = 0;
+			//Start the time score at the first one
+			double timeScore = scoreList.get(0).getTimeScore();
 			boolean endTime = false;
+			AthleteScore tempScore = null;
 			
-			//Check if the iterator has stuff
-			if(scoreIterator.hasNext()) {
-				AthleteScore tempScore = scoreIterator.next();
-				printAthleteDetail(tempScore);
-				timeScore = tempScore.getTimeScore();
-			}else {
+			//Check if the scoreList has stuff
+			if(scoreList.size() < 1) {
 				endTime = true;
 			}
 			
+			int scoreIndex = 0;
+			//Can not display stop watch. Instead wait in real time.
 			while (!endTime) {
 				try {
 					Thread.sleep(1000);
@@ -251,38 +256,13 @@ public class Result {
 				long elapsedTime = System.currentTimeMillis() - start;
 				elapsedTime = elapsedTime / 1000;
 				
-				String seconds = Integer.toString((int) elapsedTime % 60 );
-				String minutes = Integer.toString((int) elapsedTime % 3600);
-				
-				if(minutes == "2") {
-					endTime = true;
-				}
-				
-				if (seconds.length() < 2) {
-					seconds = "0" + seconds;
-				}
-				
-				if (minutes.length() < 2) {
-					minutes = "0" + minutes;
-				}
-				
-				//Doesn't work with eclipse, Assume it works normally.
-				String outputTime = minutes + ":" + seconds;
-				//Crude method of clearing away the console.
-				for(int charI = 0; i < charsWritten; i++) {
-					System.out.print("\b");
-				}
-				
-				System.out.print(outputTime);
-				charsWritten = outputTime.length();
 				
 				//Operate with iterator.
-				//When timeScore has been reached.
+				//When timeScore has been reached get the nextAthlete score.
 				if(elapsedTime % 60 > timeScore) {
-					if(scoreIterator.hasNext()) {
-						AthleteScore tempScore = scoreIterator.next();
+					if(scoreIndex < scoreList.size()) {
+						tempScore = scoreList.get(scoreIndex);
 						printAthleteDetail(tempScore);
-										
 						if(i == 0) {
 							//Seperation line
 							//1st Place
@@ -301,9 +281,12 @@ public class Result {
 							System.out.println();
 							System.out.println("---------------------------------------------");
 						}
-							
-							System.out.println();
-						System.out.println("************************************************");
+						System.out.println();
+						
+						scoreIndex++;
+						if(scoreIndex < scoreList.size() -1) {
+							timeScore = scoreList.get(scoreIndex + 1).getTimeScore();
+						}
 						
 					}else {
 						//There is no more score, end the time loop
@@ -312,7 +295,9 @@ public class Result {
 					}
 				}
 			}
-			
+			//Finally outside the loop
+			System.out.println();
+			System.out.println("************************************************");
 		}
 	}
 	

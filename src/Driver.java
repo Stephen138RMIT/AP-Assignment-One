@@ -156,9 +156,13 @@ public class Driver {
 		System.out.print("Enter 0 for yes, and anything else for no :");
 		int userInput;
 		userInput = sc.nextInt();
-		if(userInput == 0) {
-			return true;
-		}else {
+		try {
+			if(userInput == 0) {
+				return true;
+			}else {
+				return false;
+			}
+		}catch(InputMismatchException exception){
 			return false;
 		}
 	}
