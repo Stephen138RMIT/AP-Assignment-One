@@ -9,10 +9,10 @@ public class Cyclist extends Athlete{
 	}
 	
 	public void compete() {
-		if(currentEvent == Event.CYCLING) {
+		if(getEvent() == Event.CYCLING) {
 			cyclingComponent.Cycle();
 		}else {
-			System.out.println(this.athleteName + " can't compete");
+			System.out.println(getAthleteName() + " can't compete");
 		}
 		
 	}

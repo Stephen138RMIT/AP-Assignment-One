@@ -10,10 +10,10 @@ public class Swimmer extends Athlete{
 	//Swimmer has a swimmingComponent
 	public void compete() {
 		//Only swim if the event is swmming
-		if (currentEvent == Event.SWIMMING){
+		if (getEvent() == Event.SWIMMING){
 			swimmingComponent.Swim();
 		}else {
-			System.out.println(this.athleteName + " can't compete");
+			System.out.println(getAthleteName() + " can't compete");
 		}
 		
 	}

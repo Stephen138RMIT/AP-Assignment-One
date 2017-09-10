@@ -8,10 +8,10 @@ public class Runner extends Athlete {
 	}
 	
 	public void compete() {
-		if(currentEvent == Event.RUNNING) {
+		if(getEvent() == Event.RUNNING) {
 			runningComponent.Run();
 		}else{
-			System.out.println(this.athleteName + " can't compete");
+			System.out.println(getAthleteName() + " can't compete");
 		}
 	}
 }

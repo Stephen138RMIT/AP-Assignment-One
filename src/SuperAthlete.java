@@ -25,10 +25,10 @@ public class SuperAthlete extends Athlete{
 	
 	public void compete() {
 		//Error on switch null error oops
-		if (currentEvent == null){
+		if (getEvent() == null){
 			System.out.println("hello");
 		}
-		switch(currentEvent) {
+		switch(getEvent()) {
 		case CYCLING:
 			cyclingComponent.Cycle();
 			break;
@@ -39,7 +39,7 @@ public class SuperAthlete extends Athlete{
 			swimmingComponent.Swim();
 			break;
 		default:
-			System.out.println(this.athleteName + " can't compete");
+			System.out.println(getAthleteName() + " can't compete");
 		}
 	}
 

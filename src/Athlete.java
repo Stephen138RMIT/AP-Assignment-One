@@ -1,15 +1,34 @@
 public abstract class Athlete {
-	protected String athleteName;
-	protected enum Event{NONE, CYCLING, RUNNING, SWIMMING};
-	protected enum AthleteType{CYCLIST, RUNNER, SWIMMER};
-	protected Event currentEvent;
-	protected String athleteID;
+	
+	//TODO privatise all function and use getter and setter to retrieve information
+	private String athleteName;
+	public enum Event{NONE, CYCLING, RUNNING, SWIMMING};
+	public enum AthleteType{CYCLIST, RUNNER, SWIMMER};
+	private Event currentEvent;
+	private String athleteID;
 	
 	//Could use array or container to store, but with only 3 athlete type
 	//There is no need.
 	protected boolean isSwimmer = false;
 	protected boolean isRunner = false;
 	protected boolean isCyclist = false;
+	
+	public String getAthleteName() {
+		return this.athleteName;
+	}
+	
+	public Event getEvent() {
+		return currentEvent;
+	}
+	
+	public void setEvent(Event newEvent) {
+		currentEvent = newEvent;
+	}
+	
+	public String getAthleteID() {
+		return athleteID;
+	}
+	
 	
 	public Athlete(String name, String id) {
 		this.athleteName = name;
@@ -18,11 +37,7 @@ public abstract class Athlete {
 		this.athleteID = 'A' + id;
 		
 	}
-	
-	public void setEvent(Event newEvent) {
-		currentEvent = newEvent;
-	}
-	
+
 	public boolean isAthleteType(AthleteType athleteType) {
 		
 		//Why won't this switch statement work

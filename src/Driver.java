@@ -58,7 +58,7 @@ public class Driver {
 			
 		while(athleteIterator.hasNext()) {
 			Athlete currentAthlete = athleteIterator.next();
-			System.out.println(currentAthlete.athleteName + currentAthlete.athleteID);
+			System.out.println(currentAthlete.getAthleteName() + currentAthlete.getAthleteID());
 		}	
 	}
 	

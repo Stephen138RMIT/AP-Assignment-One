@@ -51,14 +51,15 @@ public class Game {
 		while(x.hasNext()) {
 			Athlete tempAthlete = x.next();
 			if(tempAthlete.isAthleteType(Athlete.AthleteType.RUNNER)) {
+				System.out.println(tempAthlete.getAthleteName() + " added");
 				runningAthletes.add(tempAthlete);
 			}
 		}
 		
-		Iterator<Athlete> runningAthlete = allAthlete.listIterator();
+		Iterator<Athlete> runningAthleteIterator = runningAthletes.listIterator();
 		
-		while(runningAthlete.hasNext()) {
-			Athlete tempRunner = runningAthlete.next();
+		while(runningAthleteIterator.hasNext()) {
+			Athlete tempRunner = runningAthleteIterator.next();
 			tempRunner.setEvent(Athlete.Event.RUNNING);
 			tempRunner.compete();
 		}
