@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Result {
 	
@@ -24,6 +26,34 @@ public class Result {
 		}
 		
 	}
+	
+	//This is comparer class for sorting.
+	//Solution derived from here. https://stackoverflow.com/questions/5805602/how-to-sort-list-of-objects-by-some-property
+	public static Comparator<AthleteScore> AthleteTimeComparer = new Comparator<AthleteScore>(){
+		@Override
+		public int compare(AthleteScore x, AthleteScore y) {
+			int startComparison	= compare(x.getTimeScore(), y.getTimeScore());
+			return startComparison;
+		}
+		
+		private int compare(double a, double b) {
+			/*
+			if(a< b) {
+				return - 1;
+			}
+			else if(a > b) {
+				return 1;
+			}
+			else {
+				return 0;
+			}
+			*/
+			//Below code is short hand for above code.
+			return a < b ? -1
+				:  a > b ? 1
+				:0;
+		}
+	};
 	
 	//Get a list of the competing athlete.
 	private ArrayList<Athlete> competingAthletes;
@@ -64,7 +94,7 @@ public class Result {
 	
 	//This can not access name, it needs a referenced passed through.
 	public void printScore() {
-		Iterator<AthleteScore> scoreIterator = scoreList.listIterator();
+		Iterator<AthleteScore> scoreIterator = scoreList.iterator();
 		System.out.println("Game ID :" + gameID);
 		while(scoreIterator.hasNext()) {
 			AthleteScore tempScore = scoreIterator.next();
@@ -77,7 +107,14 @@ public class Result {
 	
 	//TODO return score list or something
 	//Recognise game type.
-	//Sort the list.
+	//Sort the list from highest to lowest.
+	public void sortList() {
+		//Use collection to sort, use comparator.
+		
+		
+		Collections.sort(scoreList, AthleteTimeComparer);
+		
+	}
 	//Get points
 	//Result stores top 3 winner.
 }

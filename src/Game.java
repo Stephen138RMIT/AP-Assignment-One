@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedList;
 
 
 public class Game {
@@ -20,8 +19,8 @@ public class Game {
 	
 	public void cyclingCompetition() {
 
-		LinkedList<Athlete> cyclingAthletes = new LinkedList<Athlete>();
-		Iterator<Athlete> x = allAthlete.listIterator();
+		ArrayList<Athlete> cyclingAthletes = new ArrayList<Athlete>();
+		Iterator<Athlete> x = allAthlete.iterator();
 		
 		while(x.hasNext()) {
 			Athlete tempAthlete = (Athlete) x.next();
@@ -33,8 +32,8 @@ public class Game {
 	
 	public void swimmingCompetition() {
 
-		LinkedList<Athlete> swimmingAthletes = new LinkedList<Athlete>();
-		Iterator<Athlete> x = allAthlete.listIterator();
+		ArrayList<Athlete> swimmingAthletes = new ArrayList<Athlete>();
+		Iterator<Athlete> x = allAthlete.iterator();
 		
 		while(x.hasNext()) {
 			Athlete tempAthlete = (Athlete) x.next();
@@ -47,7 +46,7 @@ public class Game {
 	public void runningCompetition() {
 
 		ArrayList<Athlete> runningAthletes = new ArrayList<Athlete>();
-		Iterator<Athlete> x = allAthlete.listIterator();
+		Iterator<Athlete> x = allAthlete.iterator();
 		
 		while(x.hasNext()) {
 			Athlete tempAthlete = x.next();
@@ -59,7 +58,7 @@ public class Game {
 		//Create result
 		Result runningResult = new Result(gameID, runningAthletes);
 		
-		Iterator<Athlete> runningAthleteIterator = runningAthletes.listIterator();
+		Iterator<Athlete> runningAthleteIterator = runningAthletes.iterator();
 		
 		while(runningAthleteIterator.hasNext()) {
 			Athlete tempRunner = runningAthleteIterator.next();
@@ -68,7 +67,7 @@ public class Game {
 			//For now instant create result and store first.
 			runningResult.addScore(tempRunner.getAthleteID(),tempRunner.compete());
 		}
-		
+		runningResult.sortList();
 		runningResult.printScore();
 	}
 	

@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Scanner;
-import java.util.LinkedList;
 
 
 public class Driver {
@@ -25,6 +24,7 @@ public class Driver {
 		Swimmer Greg = new Swimmer("Greg", athleteIDGenerator.generateID());
 		Runner Smith = new Runner("Smith", athleteIDGenerator.generateID());
 		Runner Dean = new Runner("Dean", athleteIDGenerator.generateID());
+		Runner Fiona = new Runner("Fiona", athleteIDGenerator.generateID());
 		Cyclist Cathy = new Cyclist("Cathy", athleteIDGenerator.generateID());
 		Cyclist Danny = new Cyclist("Danny", athleteIDGenerator.generateID());
 		SuperAthlete Bob = new SuperAthlete("Bobby", athleteIDGenerator.generateID());
@@ -34,6 +34,7 @@ public class Driver {
 		allAthlete.add(Greg);
 		allAthlete.add(Smith);
 		allAthlete.add(Dean);
+		allAthlete.add(Fiona);
 		allAthlete.add(Cathy);
 		allAthlete.add(Danny);
 		allAthlete.add(Bob);
@@ -51,7 +52,7 @@ public class Driver {
 	public void printAthleteName()
 	{
 		
-		Iterator<Athlete> athleteIterator = allAthlete.listIterator();	
+		Iterator<Athlete> athleteIterator = allAthlete.iterator();	
 		//There is two athlete but only one competed
 		
 		System.out.println("size of Athlete: " + allAthlete.size());
