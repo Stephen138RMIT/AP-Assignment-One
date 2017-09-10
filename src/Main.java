@@ -8,10 +8,9 @@ public class Main {
 		Driver mainDriver = new Driver();
 		
 		//Start the driver class
-		
-		//Print main option
 		mainDriver.mainMenu();
-		System.out.println("bye");
+		
+		System.out.println("Shutdown succesful");
 		
 		
 	}

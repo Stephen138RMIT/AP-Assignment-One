@@ -1,6 +1,6 @@
 
 public class IDGenerator {
-	//Counter does not need to be big.
+	//Pretty simple just start with 0 and increment.
 	private int counter;
 	
 	public IDGenerator() {
@@ -8,6 +8,7 @@ public class IDGenerator {
 	}
 	
 	public String generateID() {
+		//Post increment, current value will be returned, afterwards the variable will be incremented
 		return String.valueOf(counter++);
 	}
 	

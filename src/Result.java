@@ -26,9 +26,11 @@ public class Result {
 		}
 		
 	}
-	
-	//This is comparer class for sorting.
-	//Solution derived from here. https://stackoverflow.com/questions/5805602/how-to-sort-list-of-objects-by-some-property
+	/*
+	This is comparator class for sorting. This allow for object sorting by specific elements.
+	In this case sort athlete by time. 
+	Solution derived from here. https://stackoverflow.com/questions/5805602/how-to-sort-list-of-objects-by-some-property
+	*/
 	public static Comparator<AthleteScore> AthleteTimeComparer = new Comparator<AthleteScore>(){
 		@Override
 		public int compare(AthleteScore x, AthleteScore y) {
@@ -105,16 +107,13 @@ public class Result {
 	}
 	
 	
-	//TODO return score list or something
-	//Recognise game type.
 	//Sort the list from highest to lowest.
 	public void sortList() {
 		//Use collection to sort, use comparator.
-		
-		
 		Collections.sort(scoreList, AthleteTimeComparer);
 		
 	}
+	//TODO
 	//Get points
 	//Result stores top 3 winner.
 }
