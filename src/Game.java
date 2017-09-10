@@ -11,9 +11,13 @@ public interface Game {
 	
 	//public Game();
 	
-	//Competition must be guranteed.
-	public void competition();
-	//Make into inheritance structure.
+	//Competition must be guaranteed.
+	//Return false if game failed.
+	public boolean competition();
+	
+	//Return result
+	public Result getResult();
+
 	
 	//TODO Concept finished move function to event.
 }

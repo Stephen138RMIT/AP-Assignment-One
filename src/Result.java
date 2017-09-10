@@ -61,11 +61,13 @@ public class Result {
 	private ArrayList<Athlete> competingAthletes;
 	private ArrayList<AthleteScore>  scoreList;
 	private String gameID;
+	private Athlete.Event gameEvent;
 	
-	public Result(String newGameID, ArrayList<Athlete> newCompetingAthletes) {
+	public Result(String newGameID, ArrayList<Athlete> newCompetingAthletes, Athlete.Event newEvent) {
 		gameID = newGameID;
 		scoreList = new ArrayList<AthleteScore>();
 		competingAthletes = newCompetingAthletes;
+		gameEvent = newEvent;
 	}
 	
 	//Using athleteID get name
@@ -96,16 +98,47 @@ public class Result {
 	
 	//This can not access name, it needs a referenced passed through.
 	public void printScore() {
-		Iterator<AthleteScore> scoreIterator = scoreList.iterator();
-		System.out.println("Game ID : " + gameID);
-		while(scoreIterator.hasNext()) {
-			AthleteScore tempScore = scoreIterator.next();
-			System.out.printf(getAthleteName(tempScore.getAthleteID()) + " Score : " + "%.3f%n" , tempScore.getTimeScore());
-			
-		}
 		
+		//Something went wrong, the game should not of ran with less than 6
+		if(scoreList.size() < 6){
+			System.out.println("Error, less than 5 participant. " + scoreList.size() + " Participant detected.");
+		}
+		else {
+			Iterator<AthleteScore> scoreIterator = scoreList.iterator();
+			System.out.println();
+			System.out.println("Game ID : " + gameID);
+			//This keeps track of iteration for naming winner.
+			int i = 0;
+			System.out.println("************************************************");
+			while(scoreIterator.hasNext()) {
+				AthleteScore tempScore = scoreIterator.next();
+				System.out.printf(getAthleteName(tempScore.getAthleteID()) + " " + "%.3f" , tempScore.getTimeScore());
+				System.out.print(" second ");
+				
+				if(i == 0) {
+					//Seperation line
+					//1st Place
+					System.out.print(" Winner: 5 point");
+					i++;
+				}else if(i == 1) {
+					//2nd Place
+					System.out.print(" 2nd Place: 3 Point");
+					i++;
+				}else if(i == 2) {
+					//3rd Place
+					System.out.print(" 3rd Place: 1 Point");
+					i++;
+					//now that i is more than 2, it will be ignored
+					//Print extra line for spacing
+					System.out.println();
+					System.out.println("---------------------------------------------");
+				}
+				
+				System.out.println();
+			}
+			System.out.println("************************************************");
+		}
 	}
-	
 	
 	//Sort the list from highest to lowest.
 	public void sortList() {
@@ -116,4 +149,39 @@ public class Result {
 	//TODO
 	//Get points
 	//Result stores top 3 winner.
+	//Gift points to athlete.
+	
+	//Similar to printScore, except it only show the winner.
+	public void printWinner() {
+		if(scoreList.size() < 6){
+			System.out.println("Error, less than 5 participant.");
+		}
+		else {
+			Iterator<AthleteScore> scoreIterator = scoreList.iterator();
+			System.out.println("Game ID : " + gameID);
+			int i = 0;
+			
+			while(scoreIterator.hasNext()) {
+				AthleteScore tempScore = scoreIterator.next();
+				System.out.printf(getAthleteName(tempScore.getAthleteID()) + " Score : " + "%.3f%n" , tempScore.getTimeScore());
+				
+				if(i == 0) {
+					//1st Place
+					System.out.print(" Winner: 5 point");
+				}else if(i == 1) {
+					//2nd Place
+					System.out.println("2nd Place: 3 Point");
+				}else if(i == 2) {
+					//3rd Place
+					System.out.println("3rd Place: 1 Point");
+				}else if(i >= 3) {
+					//Stop printing team.
+					break;
+				}	
+			}
+		}
+	}
+	
+	
+	
 }

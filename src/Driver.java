@@ -8,38 +8,57 @@ public class Driver {
 
 	
 	private ArrayList<Athlete> allAthlete;
-	
+	/*Instead of container of all result and using iterator to get last most
+	 * game with eventID. I'll use 3 seperate ArrayList
+	 * 
+	 */
+	private ResultHandler resultHandler;
 	//See IDGenerator for explanation.
 	private IDGenerator athleteIDGenerator;
 	private IDGenerator gameIDGenerator;
 	
+	//This method create a working set of athletes.
+	//Its set this way so that allAthlete can be replaced again if another set is used.
+	public void setMainAthlete() {
+		Swimmer Joe = new Swimmer("Joe", athleteIDGenerator.generateID());
+		Swimmer Greg = new Swimmer("Greg", athleteIDGenerator.generateID());
+		Swimmer David = new Swimmer("David", athleteIDGenerator.generateID());
+		Runner Smith = new Runner("Smith", athleteIDGenerator.generateID());
+		Runner Dean = new Runner("Dean", athleteIDGenerator.generateID());
+		Runner Fiona = new Runner("Fiona", athleteIDGenerator.generateID());
+		Cyclist Cathy = new Cyclist("Cathy", athleteIDGenerator.generateID());
+		Cyclist Danny = new Cyclist("Danny", athleteIDGenerator.generateID());
+		Cyclist George = new Cyclist("George", athleteIDGenerator.generateID());
+		SuperAthlete Bob = new SuperAthlete("Bobby", athleteIDGenerator.generateID());
+		SuperAthlete Andy = new SuperAthlete("Andy", athleteIDGenerator.generateID());
+		SuperAthlete Megan = new SuperAthlete("Megan", athleteIDGenerator.generateID());
+		
+		ArrayList<Athlete> tempList = new ArrayList<Athlete>();
+		
+		tempList.add(Joe);
+		tempList.add(Greg);
+		tempList.add(Smith);
+		tempList.add(Dean);
+		tempList.add(Fiona);
+		tempList.add(Cathy);
+		tempList.add(Danny);
+		tempList.add(Bob);
+		tempList.add(Andy);
+		tempList.add(David);
+		tempList.add(George);
+		tempList.add(Megan);
+		
+		allAthlete = tempList;
+	}
 	
 	public Driver() {
 		//Hard code Athlete.
 		athleteIDGenerator = new IDGenerator();
 		gameIDGenerator = new IDGenerator();
 		allAthlete = new ArrayList<Athlete>();
+		resultHandler = new ResultHandler();
 		
-		Swimmer Joe = new Swimmer("Joe", athleteIDGenerator.generateID());
-		Swimmer Greg = new Swimmer("Greg", athleteIDGenerator.generateID());
-		Runner Smith = new Runner("Smith", athleteIDGenerator.generateID());
-		Runner Dean = new Runner("Dean", athleteIDGenerator.generateID());
-		Runner Fiona = new Runner("Fiona", athleteIDGenerator.generateID());
-		Cyclist Cathy = new Cyclist("Cathy", athleteIDGenerator.generateID());
-		Cyclist Danny = new Cyclist("Danny", athleteIDGenerator.generateID());
-		SuperAthlete Bob = new SuperAthlete("Bobby", athleteIDGenerator.generateID());
-		SuperAthlete Andy = new SuperAthlete("Andy", athleteIDGenerator.generateID());
-		
-		allAthlete.add(Joe);
-		allAthlete.add(Greg);
-		allAthlete.add(Smith);
-		allAthlete.add(Dean);
-		allAthlete.add(Fiona);
-		allAthlete.add(Cathy);
-		allAthlete.add(Danny);
-		allAthlete.add(Bob);
-		allAthlete.add(Andy);
-
+		setMainAthlete();
 	}
 	
 	public void Instruction() {
@@ -83,7 +102,9 @@ public class Driver {
 					break;
 				case 1:
 					RunningGame runGame = new RunningGame(gameIDGenerator.generateID(), allAthlete);
-					runGame.competition();
+					if(runGame.competition()) {
+						resultHandler.addResult(runGame.getResult());
+					}
 					printGameOption();
 					break;
 				case 2: // Swim Game
