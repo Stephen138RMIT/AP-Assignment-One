@@ -1,82 +1,85 @@
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+
 public class Game {
-	//TODO remove this one test succesful and make proper event class.
-	public void test(){
-		Swimmer Joe_Swimmer = new Swimmer("Joe", "1");
-		//Test no event
-		Joe_Swimmer.compete();
-		//Set event
-		Joe_Swimmer.setEvent(Athlete.Event.SWIMMING);
-		//He should swim now
-		Joe_Swimmer.compete();
+	//TODO Make this into interface, create subclass and port the code over.
+	private String gameID;
+	private ArrayList<Athlete> allAthlete;
+	private Athlete.Event currentEvent;
+	
+	public Game(String newGameID, ArrayList<Athlete> athleteList, Athlete.Event newEvent){
+		gameID = "G" + newGameID;
+		allAthlete = athleteList;
+		currentEvent = newEvent;
+	}
+	
+	//Make into inheritance structure.
+	
+	public void cyclingCompetition() {
+
+		LinkedList<Athlete> cyclingAthletes = new LinkedList<Athlete>();
+		Iterator<Athlete> x = allAthlete.listIterator();
 		
-		Cyclist smith = new Cyclist("Smith", "2");
-		smith.compete();
-		smith.setEvent(Athlete.Event.CYCLING);
-		smith.compete();
-		
-		Runner chloe = new Runner("Cloe", "3");
-		chloe.compete();
-		chloe.setEvent(Athlete.Event.RUNNING);
-		chloe.compete();
-		
-		SuperAthlete clair = new SuperAthlete("Clair", "4");
-		
-		clair.compete();
-		clair.setEvent(Athlete.Event.CYCLING);
-		clair.compete();
-		clair.setEvent(Athlete.Event.RUNNING);
-		clair.compete();
-		clair.setEvent(Athlete.Event.SWIMMING);
-		clair.compete();
-		
-		//recognisition of athlete
-		
-		if(clair.isAthleteType(Athlete.AthleteType.SWIMMER)) {
-			System.out.println("clair is a swimmer");
+		while(x.hasNext()) {
+			Athlete tempAthlete = (Athlete) x.next();
+			if(tempAthlete.isAthleteType(Athlete.AthleteType.CYCLIST)) {
+				cyclingAthletes.add(tempAthlete);
+			}
 		}
-		
-		if(!chloe.isAthleteType(Athlete.AthleteType.SWIMMER)) {
-			System.out.println("Chloe is not a swimmer");
-		}
-		
-		//Test Array, use reference if possible.
-		//Linked list of all athlete
-		LinkedList<Athlete> allAthlete = new LinkedList<Athlete>();
-		allAthlete.add(Joe_Swimmer);
-		allAthlete.add(chloe);
-		allAthlete.add(smith);
-		allAthlete.add(clair);
-		
-		//Get only swimmers and add them into another list.
-		
-		LinkedList<Athlete> swimmerAthlete = new LinkedList<Athlete>();
+	}
+	
+	public void swimmingCompetition() {
+
+		LinkedList<Athlete> swimmingAthletes = new LinkedList<Athlete>();
 		Iterator<Athlete> x = allAthlete.listIterator();
 		
 		while(x.hasNext()) {
 			Athlete tempAthlete = (Athlete) x.next();
 			if(tempAthlete.isAthleteType(Athlete.AthleteType.SWIMMER)) {
-				swimmerAthlete.add(tempAthlete);
-				System.out.println("added athlete");
+				swimmingAthletes.add(tempAthlete);
+			}
+		}
+	}
+	
+	public void runningCompetition() {
+
+		LinkedList<Athlete> runningAthletes = new LinkedList<Athlete>();
+		Iterator<Athlete> x = allAthlete.listIterator();
+		
+		while(x.hasNext()) {
+			Athlete tempAthlete = x.next();
+			if(tempAthlete.isAthleteType(Athlete.AthleteType.RUNNER)) {
+				runningAthletes.add(tempAthlete);
 			}
 		}
 		
-		// Joe and clair should be competing
+		Iterator<Athlete> runningAthlete = allAthlete.listIterator();
 		
-		Iterator<Athlete> competeX = swimmerAthlete.listIterator();
-		
-		//There is two athlete but only one competed
-		
-		System.out.println("size of swimmer athlete: " + swimmerAthlete.size());
-		
-		while(competeX.hasNext()) {
-			Athlete currentAthlete = competeX.next();
-			currentAthlete.setEvent(Athlete.Event.SWIMMING);
-			//Override should happen.
-			currentAthlete.compete();
+		while(runningAthlete.hasNext()) {
+			Athlete tempRunner = runningAthlete.next();
+			tempRunner.setEvent(Athlete.Event.RUNNING);
+			tempRunner.compete();
 		}
+		
+	}
+	
+	public void competition() {
+		switch (currentEvent) {
+		case CYCLING:
+			cyclingCompetition();
+			break;
+		case RUNNING:
+			runningCompetition();
+			break;
+		case SWIMMING:
+			swimmingCompetition();
+			break;
+		default:
+			//There is an error, event not recognised or null
+		}
+				
 	}
 	//TODO Concept finished move function to event.
 }

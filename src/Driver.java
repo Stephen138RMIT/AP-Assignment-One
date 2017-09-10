@@ -1,20 +1,25 @@
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.LinkedList;
+
 
 public class Driver {
 
 	//We need an ID generation.
 	
 	
-	private LinkedList<Athlete> allAthlete;
+	private ArrayList<Athlete> allAthlete;
 	private IDGenerator athleteIDGenerator;
+	private IDGenerator gameIDGenerator;
+	
 	
 	public Driver() {
 		//Hard code Athlete.
 		athleteIDGenerator = new IDGenerator();
-		allAthlete = new LinkedList<Athlete>();
+		gameIDGenerator = new IDGenerator();
+		allAthlete = new ArrayList<Athlete>();
 		
 		Swimmer Joe = new Swimmer("Joe", athleteIDGenerator.generateID());
 		Swimmer Greg = new Swimmer("Greg", athleteIDGenerator.generateID());
@@ -78,8 +83,9 @@ public class Driver {
 					//Don't print out error message just break and exit
 					break;
 				case 1:
-					Game anEvent = new Game();
-					anEvent.test();
+					Game anEvent = new Game(gameIDGenerator.generateID(), allAthlete, Athlete.Event.RUNNING);
+					anEvent.competition();
+					//anEvent.test();
 					break;
 				case 2:
 					Instruction();
