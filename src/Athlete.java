@@ -3,6 +3,7 @@ public abstract class Athlete {
 	protected enum Event{NONE, CYCLING, RUNNING, SWIMMING};
 	protected enum AthleteType{CYCLIST, RUNNER, SWIMMER};
 	protected Event currentEvent;
+	protected String athleteID;
 	
 	//Could use array or container to store, but with only 3 athlete type
 	//There is no need.
@@ -10,9 +11,12 @@ public abstract class Athlete {
 	protected boolean isRunner = false;
 	protected boolean isCyclist = false;
 	
-	public Athlete(String name) {
+	public Athlete(String name, String id) {
 		this.athleteName = name;
 		currentEvent = Event.NONE;
+		//Append a to given id.
+		this.athleteID = 'A' + id;
+		
 	}
 	
 	public void setEvent(Event newEvent) {
@@ -41,6 +45,6 @@ public abstract class Athlete {
 		}
 		return false;
 	}
-	//This method is to be overidden
+	//This method needs to be overidden
 	public void compete() {};
 }

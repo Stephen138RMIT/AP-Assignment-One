@@ -11,9 +11,9 @@ public class Swimming {
 	static private int MAXIMUM = 200;
 	
 	//TODO component return output such as time
-	public void Swim() {
+	public double Swim() {
 		double randomNum = ThreadLocalRandom.current().nextDouble(MINIMUM, MAXIMUM + 1);
 		System.out.printf("I swam : %.3f%n", randomNum);
-		
+		return randomNum;
 	}
 }

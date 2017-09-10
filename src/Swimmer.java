@@ -1,8 +1,8 @@
 
 public class Swimmer extends Athlete{
 	private Swimming swimmingComponent;
-	public Swimmer(String name) {
-		super(name);
+	public Swimmer(String name, String id) {
+		super(name, id);
 		swimmingComponent = new Swimming();
 		isSwimmer = true;
 	}

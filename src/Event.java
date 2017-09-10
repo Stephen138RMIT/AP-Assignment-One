@@ -4,7 +4,7 @@ import java.util.LinkedList;
 public class Event {
 	//TODO remove this one test succesful and make proper event class.
 	public void test(){
-		Swimmer Joe_Swimmer = new Swimmer("Joe");
+		Swimmer Joe_Swimmer = new Swimmer("Joe", "1");
 		//Test no event
 		Joe_Swimmer.compete();
 		//Set event
@@ -12,17 +12,17 @@ public class Event {
 		//He should swim now
 		Joe_Swimmer.compete();
 		
-		Cyclist smith = new Cyclist("Smith");
+		Cyclist smith = new Cyclist("Smith", "2");
 		smith.compete();
 		smith.setEvent(Athlete.Event.CYCLING);
 		smith.compete();
 		
-		Runner chloe = new Runner("Cloe");
+		Runner chloe = new Runner("Cloe", "3");
 		chloe.compete();
 		chloe.setEvent(Athlete.Event.RUNNING);
 		chloe.compete();
 		
-		SuperAthlete clair = new SuperAthlete("Clair");
+		SuperAthlete clair = new SuperAthlete("Clair", "4");
 		
 		clair.compete();
 		clair.setEvent(Athlete.Event.CYCLING);

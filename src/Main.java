@@ -9,12 +9,11 @@ public class Main {
 		
 		//Start the driver class
 		
-		
 		//Print main option
-		
-		
 		mainDriver.mainMenu();
 		System.out.println("bye");
+		
+		
 	}
 	
 }

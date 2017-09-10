@@ -11,8 +11,8 @@ public class SuperAthlete extends Athlete{
 	 */
 	
 	
-	public SuperAthlete(String name) {
-		super(name);
+	public SuperAthlete(String name, String id) {
+		super(name, id);
 		swimmingComponent = new Swimming();
 		runningComponent = new Running();
 		cyclingComponent = new Cycling();
