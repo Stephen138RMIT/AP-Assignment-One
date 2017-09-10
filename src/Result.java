@@ -157,7 +157,7 @@ public class Result {
 	
 	//Similar to printScore, except it only show the winner.
 	public void printWinner() {
-		if(scoreList.size() < 6){
+		if(scoreList.size() < 5){
 			System.out.println("Error, less than 5 participant.");
 		}
 		else {
@@ -178,7 +178,7 @@ public class Result {
 					i++;
 				}else if(i == 1) {
 					//2nd Place
-					System.out.print(" 2nd Place: 3 Point");
+					System.out.print(" 2nd Place: 2 Point");
 					i++;
 				}else if(i == 2) {
 					//3rd Place
@@ -195,7 +195,18 @@ public class Result {
 			System.out.println("************************************************");
 		}
 	}
-	
-	
-	
+		
+	//Create a get ID using index, let result handler know which one
+		
+	public String getAthleteID(int index){
+		if(scoreList.size() > 4)
+		{
+			return scoreList.get(index).getAthleteID();
+			
+		}
+		else {
+			//be wary of empty fields
+			return null;
+		}
+	}
 }

@@ -50,6 +50,8 @@ public class Driver {
 		tempList.add(Megan);
 		
 		allAthlete = tempList;
+		
+		resultHandler.setAthleteList(tempList);
 	}
 	
 	public Driver() {
@@ -69,10 +71,10 @@ public class Driver {
 		System.out.println("0: quit");
 		System.out.println("1: Start Game");
 		System.out.println("2: Repeat Instruction");
-		System.out.println("3: Print all Athlet Name");
+		System.out.println("3: Print all Athlete Name and Score");
 		System.out.println("4: Print all final result");
 	}
-	
+	/* Redundant now that resultHandler can print result of all athlete
 	public void printAthleteName()
 	{
 		
@@ -86,7 +88,7 @@ public class Driver {
 			System.out.println(currentAthlete.getAthleteName() + currentAthlete.getAthleteID());
 		}	
 	}
-	
+	*/
 	public void printGameOption() {
 		System.out.println("0 : Back to Main Menu");
 		System.out.println("1 : Start Running Competition");
@@ -165,7 +167,7 @@ public class Driver {
 					break;
 				case 3:
 					//Eventually display point of all athlete.
-					printAthleteName();
+					resultHandler.printAllAthlete();
 					break;
 				case 4:
 					//Display final result of all game
