@@ -1,8 +1,8 @@
 
 public class Runner extends Athlete {
 	private Running runningComponent;
-	public Runner(String name, String id) {
-		super(name, id);
+	public Runner(String name, String id, int age, Athlete.States state) {
+		super(name, id, age, state);
 		runningComponent = new Running();
 		isRunner = true;
 	}

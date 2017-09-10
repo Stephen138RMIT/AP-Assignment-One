@@ -2,8 +2,8 @@
 public class Cyclist extends Athlete{
 	private Cycling cyclingComponent;
 	
-	public Cyclist(String name, String id) {
-		super(name, id);
+	public Cyclist(String name, String id, int age, Athlete.States state) {
+		super(name, id, age, state);
 		cyclingComponent = new Cycling();
 		isCyclist = true;
 	}

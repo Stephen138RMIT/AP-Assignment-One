@@ -7,6 +7,8 @@ public abstract class Athlete{
 	public enum States{VIC, WA, SA, QLD, NT, NSW};
 	private Event currentEvent;
 	private String athleteID;
+	private int age;
+	private States state;
 	
 	//Could use array or container to store, but with only 3 athlete type
 	//There is no need.
@@ -30,13 +32,21 @@ public abstract class Athlete{
 		return athleteID;
 	}
 	
+	public States getState() {
+		return state;
+	}
 	
-	public Athlete(String name, String id) {
+	public int getAge() {
+		return age;
+	}
+	
+	public Athlete(String name, String id, int newAge, Athlete.States newState) {
 		this.athleteName = name;
 		currentEvent = Event.NONE;
 		//Append a to given id.
 		this.athleteID = 'A' + id;
-		
+		this.age = newAge;
+		this.state = newState;
 	}
 
 	public boolean isAthleteType(AthleteType athleteType) {

@@ -26,18 +26,18 @@ public class Driver {
 	//This method create a working set of athletes.
 	//Its set this way so that allAthlete can be replaced again if another set is used.
 	public void setMainAthlete() {
-		Swimmer Joe = new Swimmer("Joe", athleteIDGenerator.generateID());
-		Swimmer Greg = new Swimmer("Greg", athleteIDGenerator.generateID());
-		Swimmer David = new Swimmer("David", athleteIDGenerator.generateID());
-		Runner Smith = new Runner("Smith", athleteIDGenerator.generateID());
-		Runner Dean = new Runner("Dean", athleteIDGenerator.generateID());
-		Runner Fiona = new Runner("Fiona", athleteIDGenerator.generateID());
-		Cyclist Cathy = new Cyclist("Cathy", athleteIDGenerator.generateID());
-		Cyclist Danny = new Cyclist("Danny", athleteIDGenerator.generateID());
-		Cyclist George = new Cyclist("George", athleteIDGenerator.generateID());
-		SuperAthlete Bob = new SuperAthlete("Bobby", athleteIDGenerator.generateID());
-		SuperAthlete Andy = new SuperAthlete("Andy", athleteIDGenerator.generateID());
-		SuperAthlete Megan = new SuperAthlete("Megan", athleteIDGenerator.generateID());
+		Swimmer Joe = new Swimmer("Joe", athleteIDGenerator.generateID(), 20, Athlete.States.VIC);
+		Swimmer Greg = new Swimmer("Greg", athleteIDGenerator.generateID(), 30, Athlete.States.NSW);
+		Swimmer David = new Swimmer("David", athleteIDGenerator.generateID(), 24, Athlete.States.SA);
+		Runner Smith = new Runner("Smith", athleteIDGenerator.generateID(),24, Athlete.States.WA);
+		Runner Dean = new Runner("Dean", athleteIDGenerator.generateID(),40, Athlete.States.WA);
+		Runner Fiona = new Runner("Fiona", athleteIDGenerator.generateID(),33, Athlete.States.NT);
+		Cyclist Cathy = new Cyclist("Cathy", athleteIDGenerator.generateID(),22, Athlete.States.QLD);
+		Cyclist Danny = new Cyclist("Danny", athleteIDGenerator.generateID(),26, Athlete.States.VIC);
+		Cyclist George = new Cyclist("George", athleteIDGenerator.generateID(),29, Athlete.States.QLD);
+		SuperAthlete Bob = new SuperAthlete("Bobby", athleteIDGenerator.generateID(),19, Athlete.States.NT);
+		SuperAthlete Andy = new SuperAthlete("Andy", athleteIDGenerator.generateID(),21, Athlete.States.WA);
+		SuperAthlete Megan = new SuperAthlete("Megan", athleteIDGenerator.generateID(),27, Athlete.States.SA);
 		
 		ArrayList<Athlete> tempList = new ArrayList<Athlete>();
 		
@@ -105,6 +105,10 @@ public class Driver {
 		System.out.println("1 : Start Running Competition");
 		System.out.println("2 : Start Swimming Competition");
 		System.out.println("3 : Start Cycling Competition");
+	}
+	
+	public int predictWinner() {
+		return 0;
 	}
 	
 	public void gameMenu() {

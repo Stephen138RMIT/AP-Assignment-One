@@ -63,6 +63,7 @@ public class Result {
 	private String gameID;
 	private Athlete.Event gameEvent;
 	private Official referee;
+	private String predictedWinnerID;
 	
 	public Result(String newGameID, ArrayList<Athlete> newCompetingAthletes, Athlete.Event newEvent, Official newReferee) {
 		gameID = newGameID;
@@ -74,6 +75,7 @@ public class Result {
 	
 	//Using athleteID get name
 	//Probably could of implemented key value pair instead.
+	//This may be depecrated
 	public String getAthleteName(String athleteID) {
 		Iterator<Athlete> athleteIterator = competingAthletes.listIterator();
 		//Indicate name can't be found
@@ -87,9 +89,34 @@ public class Result {
 				break;
 			}
 		}
-		
 		return athleteName;
 		
+	}
+	
+	//Public all athlete detail plus score
+	public void printAthleteDetail(AthleteScore score) {
+		
+		String athleteID = score.getAthleteID();
+		
+		Iterator<Athlete> athleteIterator = competingAthletes.listIterator();
+		while(athleteIterator.hasNext()) {
+			Athlete tempAthlete;
+			tempAthlete = athleteIterator.next();
+			if(athleteID == tempAthlete.getAthleteID()) {
+				
+				String athleteName = tempAthlete.getAthleteName();
+				int athleteAge = tempAthlete.getAge();
+				Athlete.States athleteState = tempAthlete.getState();
+				
+				System.out.print("ID: " + athleteID  + " Name: " + athleteName + " Age: " + athleteAge + " State: " + athleteState);
+				System.out.printf(" Time: %.3f" , score.getTimeScore());
+				//found athlete name quit loop
+				break;
+			}
+		}
+		
+		
+		System.out.printf("%.3f" , score.getTimeScore());
 	}
 	
 	
@@ -98,14 +125,25 @@ public class Result {
 		scoreList.add(newScore);
 	}
 	
-	//This can not access name, it needs a referenced passed through.
+	// A misnomer, it actually runs the game.
+	
+	// This function is important, it will tell if the game can be ran or not.
+	
+	public boolean canCompete() {
+		if(scoreList.size() < 6){
+			System.out.println("Error, less than 5 participant. " + scoreList.size() + " Participant detected.");
+			return false;
+		}
+		return true;
+	}
+	
+	
+	
 	public void printScore() {
 		
 		//Something went wrong, the game should not of ran with less than 6
-		if(scoreList.size() < 6){
-			System.out.println("Error, less than 5 participant. " + scoreList.size() + " Participant detected.");
-		}
-		else {
+		
+		if(canCompete()) {
 			Iterator<AthleteScore> scoreIterator = scoreList.iterator();
 			System.out.println();
 			System.out.println("Game ID : " + gameID);
@@ -115,9 +153,8 @@ public class Result {
 			System.out.println("************************************************");
 			while(scoreIterator.hasNext()) {
 				AthleteScore tempScore = scoreIterator.next();
-				System.out.printf(getAthleteName(tempScore.getAthleteID()) + " " + "%.3f" , tempScore.getTimeScore());
-				System.out.print(" second ");
-				
+				printAthleteDetail(tempScore);
+								
 				if(i == 0) {
 					//Seperation line
 					//1st Place
@@ -158,12 +195,14 @@ public class Result {
 		return gameEvent;
 	}
 	
+	public void predictWinner(String predictedAthleteID) {
+		//Set the winner to be predicted
+		predictedWinnerID = predictedAthleteID;
+	}
+	
 	//Similar to printScore, except it only show the winner.
 	public void printWinner() {
-		if(scoreList.size() < 5){
-			System.out.println("Error, less than 5 participant.");
-		}
-		else {
+		if(canCompete()){
 			Iterator<AthleteScore> scoreIterator = scoreList.iterator();
 			System.out.println("Game ID : " + gameID);
 			printRefereeDetail();
@@ -172,8 +211,7 @@ public class Result {
 			System.out.println("************************************************");
 			while(scoreIterator.hasNext()) {
 				AthleteScore tempScore = scoreIterator.next();
-				System.out.printf(getAthleteName(tempScore.getAthleteID()) + " " + "%.3f" , tempScore.getTimeScore());
-				System.out.print(" second ");
+				printAthleteDetail(tempScore);
 				
 				if(i == 0) {
 					//Seperation line
