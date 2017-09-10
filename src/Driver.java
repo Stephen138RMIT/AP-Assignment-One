@@ -153,18 +153,26 @@ public class Driver {
 	//Its really tricky having keyboard event handler that is not in swing environment, instead ask beforehand.
 	public boolean askQuestion() {
 		System.out.println("Skip waiting for result ?");
-		System.out.print("Enter 0 for yes, and anything else for no :");
-		int userInput;
-		userInput = sc.nextInt();
-		try {
-			if(userInput == 0) {
-				return true;
-			}else {
-				return false;
+		System.out.print("Enter 0 for no, and anything other number for yes :");
+		int userIntInput;
+		userIntInput = sc.nextInt();
+		while(userIntInput != -1) {
+			try{
+				if( userIntInput == 0) {
+					return false;
+				}
+				else {
+					return true;
+				}
 			}
-		}catch(InputMismatchException exception){
-			return false;
+			catch(InputMismatchException exception){
+				System.out.println("Input not Integer.");
+				sc.next();
+				userIntInput = -1;
+			}
 		}
+		
+		return true;
 	}
 	
 	public void gameMenu() {
