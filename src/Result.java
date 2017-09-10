@@ -165,24 +165,34 @@ public class Result {
 			System.out.println("Game ID : " + gameID);
 			int i = 0;
 			
+			System.out.println("************************************************");
 			while(scoreIterator.hasNext()) {
 				AthleteScore tempScore = scoreIterator.next();
-				System.out.printf(getAthleteName(tempScore.getAthleteID()) + " Score : " + "%.3f%n" , tempScore.getTimeScore());
+				System.out.printf(getAthleteName(tempScore.getAthleteID()) + " " + "%.3f" , tempScore.getTimeScore());
+				System.out.print(" second ");
 				
 				if(i == 0) {
+					//Seperation line
 					//1st Place
 					System.out.print(" Winner: 5 point");
+					i++;
 				}else if(i == 1) {
 					//2nd Place
-					System.out.println("2nd Place: 3 Point");
+					System.out.print(" 2nd Place: 3 Point");
+					i++;
 				}else if(i == 2) {
 					//3rd Place
-					System.out.println("3rd Place: 1 Point");
-				}else if(i >= 3) {
-					//Stop printing team.
+					System.out.print(" 3rd Place: 1 Point");
+					i++;
+					//now that i is more than 2, it will be ignored
+					//Print extra line for spacing
 					break;
-				}	
+				}
+				
+				System.out.println();
 			}
+			System.out.println();
+			System.out.println("************************************************");
 		}
 	}
 	

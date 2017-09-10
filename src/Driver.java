@@ -169,7 +169,7 @@ public class Driver {
 					break;
 				case 4:
 					//Display final result of all game
-					resultHandler.printLastCycleGame();
+					resultHandler.printLastResultAll();
 					break;
 				default:
 					System.out.println("Out of bound");
