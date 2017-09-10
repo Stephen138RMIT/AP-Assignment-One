@@ -23,23 +23,24 @@ public class SuperAthlete extends Athlete{
 	
 	
 	
-	public void compete() {
+	public double compete() {
 		//Error on switch null error oops
 		if (getEvent() == null){
 			System.out.println("hello");
 		}
 		switch(getEvent()) {
 		case CYCLING:
-			cyclingComponent.Cycle();
-			break;
+			return cyclingComponent.Cycle();
+			//break;
 		case RUNNING:
-			runningComponent.Run();
-			break;
+			return runningComponent.Run();
+			//break;
 		case SWIMMING:
-			swimmingComponent.Swim();
-			break;
+			return swimmingComponent.Swim();
+			//break;
 		default:
 			System.out.println(getAthleteName() + " can't compete");
+			return 0;
 		}
 	}
 

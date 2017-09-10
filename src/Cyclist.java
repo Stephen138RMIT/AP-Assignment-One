@@ -8,13 +8,13 @@ public class Cyclist extends Athlete{
 		isCyclist = true;
 	}
 	
-	public void compete() {
+	public double compete() {
 		if(getEvent() == Event.CYCLING) {
-			cyclingComponent.Cycle();
+			return cyclingComponent.Cycle();
 		}else {
 			System.out.println(getAthleteName() + " can't compete");
+			return 0;
 		}
-		
 	}
 	
 }

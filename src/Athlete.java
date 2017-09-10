@@ -60,6 +60,9 @@ public abstract class Athlete {
 		}
 		return false;
 	}
-	//This method needs to be overidden
-	public void compete() {};
+	
+	//This method needs to be overidden, 
+	public double compete() {
+		return 0;
+	}
 }

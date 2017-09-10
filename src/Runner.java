@@ -7,11 +7,12 @@ public class Runner extends Athlete {
 		isRunner = true;
 	}
 	
-	public void compete() {
+	public double compete() {
 		if(getEvent() == Event.RUNNING) {
-			runningComponent.Run();
+			return runningComponent.Run();
 		}else{
 			System.out.println(getAthleteName() + " can't compete");
+			return 0;
 		}
 	}
 }

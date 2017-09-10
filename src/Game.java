@@ -8,6 +8,7 @@ public class Game {
 	private String gameID;
 	private ArrayList<Athlete> allAthlete;
 	private Athlete.Event currentEvent;
+	private ArrayList<Result> gameResult;
 	
 	public Game(String newGameID, ArrayList<Athlete> athleteList, Athlete.Event newEvent){
 		gameID = "G" + newGameID;
@@ -45,7 +46,7 @@ public class Game {
 	
 	public void runningCompetition() {
 
-		LinkedList<Athlete> runningAthletes = new LinkedList<Athlete>();
+		ArrayList<Athlete> runningAthletes = new ArrayList<Athlete>();
 		Iterator<Athlete> x = allAthlete.listIterator();
 		
 		while(x.hasNext()) {
@@ -55,15 +56,20 @@ public class Game {
 				runningAthletes.add(tempAthlete);
 			}
 		}
+		//Create result
+		Result runningResult = new Result(gameID, runningAthletes);
 		
 		Iterator<Athlete> runningAthleteIterator = runningAthletes.listIterator();
 		
 		while(runningAthleteIterator.hasNext()) {
 			Athlete tempRunner = runningAthleteIterator.next();
 			tempRunner.setEvent(Athlete.Event.RUNNING);
-			tempRunner.compete();
+			//Figure out how to create timer class later.
+			//For now instant create result and store first.
+			runningResult.addScore(tempRunner.getAthleteID(),tempRunner.compete());
 		}
 		
+		runningResult.printScore();
 	}
 	
 	public void competition() {
