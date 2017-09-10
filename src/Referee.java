@@ -41,7 +41,7 @@ public class Referee implements Official{
 		}
 		
 		gameResult.sortList();
-		gameResult.printScore();
+		//gameResult.printScore();
 		return gameResult;
 	}
 

@@ -137,7 +137,28 @@ public class Result {
 		return true;
 	}
 	
+	//Return number of athlete
+	public int getNoAthlete() {
+		return competingAthletes.size();
+	}
 	
+	//Print out list of competing Athlete, no score, with index number for reference
+	
+	public void printCompetingAthlete() {
+		
+		int noAthlete = competingAthletes.size();
+		
+		for(int i = 0; i < noAthlete; i++) {
+			
+			String athleteID = competingAthletes.get(i).getAthleteID();
+			String athleteName = competingAthletes.get(i).getAthleteName();
+			Athlete.States athleteState = competingAthletes.get(i).getState();
+			int athleteAge = competingAthletes.get(i).getAge();
+			System.out.println("Index :" + i + " ID: " + athleteID  + " Name: " + athleteName + " Age: " + athleteAge + " State: " + athleteState);	
+		}
+		
+		
+	}
 	
 	public void printScore() {
 		
@@ -147,6 +168,7 @@ public class Result {
 			Iterator<AthleteScore> scoreIterator = scoreList.iterator();
 			System.out.println();
 			System.out.println("Game ID : " + gameID);
+			System.out.println("Predicted Winner: " + predictedWinnerID + " Name: " + getAthleteName(predictedWinnerID));
 			printRefereeDetail();
 			//This keeps track of iteration for naming winner.
 			int i = 0;
@@ -195,9 +217,22 @@ public class Result {
 		return gameEvent;
 	}
 	
-	public void predictWinner(String predictedAthleteID) {
+	//set Winner by index
+	public void predictWinner(int index) {
 		//Set the winner to be predicted
-		predictedWinnerID = predictedAthleteID;
+		predictedWinnerID = competingAthletes.get(index).getAthleteID();
+	}
+	
+	public boolean isWinner() {
+		if(predictedWinnerID == null) {
+			return false;
+		}
+		
+		//Is the predicted winner id in the top?
+		if(predictedWinnerID == getAthleteID(0)) {
+			return true;
+		}
+		return false;
 	}
 	
 	//Similar to printScore, except it only show the winner.

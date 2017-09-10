@@ -107,10 +107,48 @@ public class Driver {
 		System.out.println("3 : Start Cycling Competition");
 	}
 	
-	public int predictWinner() {
-		return 0;
-	}
 	
+	//
+	
+	public Result predictWinner(Result currentResult) {
+		//Give competer to bet on.
+		
+		int userIntInput = -2;
+		
+		//Don't leave loop until prediction has been made
+		currentResult.printCompetingAthlete();
+		while(userIntInput != -1) {
+			try{
+				System.out.println();
+				System.out.print("Predict Winner, enter correlating index: ");
+				userIntInput = sc.nextInt();
+				
+				//Keep repeating until valid input has been reached
+				if(userIntInput < 0 || userIntInput >= currentResult.getNoAthlete()) {
+					System.out.println("Out of bound");
+					userIntInput = -2;
+				}else {
+					//Valid input, the loop will be exited
+					currentResult.predictWinner(userIntInput);
+					userIntInput = -1;
+					if(currentResult.isWinner()) {
+						System.out.println("*************************************");
+						System.out.println("Congratulation, You predicted right.");
+						System.out.println("*************************************");
+					}
+				}
+			}
+		
+			catch(InputMismatchException exception){
+				System.out.println("Input not Integer.");
+				sc.next();
+				userIntInput = -2;
+			}
+		}
+		
+		
+		return currentResult;
+	}
 	public void gameMenu() {
 		int userIntInput = -1;
 		while(userIntInput != 0) {
@@ -123,22 +161,27 @@ public class Driver {
 					break;
 				case 1:
 					RunningGame runGame = new RunningGame(gameIDGenerator.generateID(), allAthlete, runJudge);
+					//If runnable give game to prediction
 					if(runGame.competition()) {
-						resultHandler.addResult(runGame.getResult());
+						//While the winner are already determined under the hood the player can still predict.
+						resultHandler.addResult(predictWinner(runGame.getResult()));
+						runGame.getResult().printScore();
 					}
 					printGameOption();
 					break;
 				case 2: // Swim Game
 					SwimmingGame swimGame = new SwimmingGame(gameIDGenerator.generateID(), allAthlete, swimJudge);
 					if(swimGame.competition()) {
-						resultHandler.addResult(swimGame.getResult());
+						resultHandler.addResult(predictWinner(swimGame.getResult()));
+						swimGame.getResult().printScore();
 					}
 					printGameOption();
 					break;
 				case 3: // Cycle Game
 					CyclingGame cycleGame = new CyclingGame(gameIDGenerator.generateID(), allAthlete, cycleJudge);
 					if(cycleGame.competition()) {
-						resultHandler.addResult(cycleGame.getResult());
+						resultHandler.addResult(predictWinner(cycleGame.getResult()));
+						cycleGame.getResult().printScore();
 					}
 					printGameOption();
 					break;
