@@ -95,7 +95,7 @@ public class Result {
 	//This can not access name, it needs a referenced passed through.
 	public void printScore() {
 		Iterator<AthleteScore> scoreIterator = scoreList.iterator();
-		System.out.println("Game ID :" + gameID);
+		System.out.println("Game ID : " + gameID);
 		while(scoreIterator.hasNext()) {
 			AthleteScore tempScore = scoreIterator.next();
 			System.out.printf(getAthleteName(tempScore.getAthleteID()) + " Score : " + "%.3f%n" , tempScore.getTimeScore());

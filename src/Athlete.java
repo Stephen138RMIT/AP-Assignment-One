@@ -1,4 +1,4 @@
-public abstract class Athlete {
+public abstract class Athlete{
 	
 	//TODO privatise all function and use getter and setter to retrieve information
 	private String athleteName;

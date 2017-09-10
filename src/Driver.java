@@ -84,7 +84,7 @@ public class Driver {
 					//Don't print out error message just break and exit
 					break;
 				case 1:
-					Game anEvent = new Game(gameIDGenerator.generateID(), allAthlete, Athlete.Event.RUNNING);
+					Game anEvent = new RunningGame(gameIDGenerator.generateID(), allAthlete);
 					anEvent.competition();
 					//anEvent.test();
 					break;
