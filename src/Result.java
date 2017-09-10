@@ -62,12 +62,14 @@ public class Result {
 	private ArrayList<AthleteScore>  scoreList;
 	private String gameID;
 	private Athlete.Event gameEvent;
+	private Official referee;
 	
-	public Result(String newGameID, ArrayList<Athlete> newCompetingAthletes, Athlete.Event newEvent) {
+	public Result(String newGameID, ArrayList<Athlete> newCompetingAthletes, Athlete.Event newEvent, Official newReferee) {
 		gameID = newGameID;
 		scoreList = new ArrayList<AthleteScore>();
 		competingAthletes = newCompetingAthletes;
 		gameEvent = newEvent;
+		referee = newReferee;
 	}
 	
 	//Using athleteID get name
@@ -107,6 +109,7 @@ public class Result {
 			Iterator<AthleteScore> scoreIterator = scoreList.iterator();
 			System.out.println();
 			System.out.println("Game ID : " + gameID);
+			printRefereeDetail();
 			//This keeps track of iteration for naming winner.
 			int i = 0;
 			System.out.println("************************************************");
@@ -146,10 +149,10 @@ public class Result {
 		Collections.sort(scoreList, AthleteTimeComparer);
 		
 	}
-	//TODO
-	//Get points
-	//Result stores top 3 winner.
-	//Gift points to athlete.
+
+	public void printRefereeDetail() {
+		System.out.println("Referee " + referee.getID() + " Name: " + referee.getName() + " Age: " + referee.getAge() + " State: " + referee.getState());
+	}
 	
 	public Athlete.Event getEvent(){
 		return gameEvent;
@@ -163,6 +166,7 @@ public class Result {
 		else {
 			Iterator<AthleteScore> scoreIterator = scoreList.iterator();
 			System.out.println("Game ID : " + gameID);
+			printRefereeDetail();
 			int i = 0;
 			
 			System.out.println("************************************************");

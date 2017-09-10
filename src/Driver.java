@@ -16,7 +16,12 @@ public class Driver {
 	//See IDGenerator for explanation.
 	private IDGenerator athleteIDGenerator;
 	private IDGenerator gameIDGenerator;
+	private IDGenerator refIDGenerator;
 	private Scanner sc;
+	
+	private Referee swimJudge;
+	private Referee runJudge;
+	private Referee cycleJudge;
 	
 	//This method create a working set of athletes.
 	//Its set this way so that allAthlete can be replaced again if another set is used.
@@ -49,6 +54,11 @@ public class Driver {
 		tempList.add(George);
 		tempList.add(Megan);
 		
+		//Initialise referee
+		swimJudge = new Referee(refIDGenerator.generateID(), "MCain", 44, Athlete.States.VIC, Athlete.Event.SWIMMING);
+		cycleJudge = new Referee(refIDGenerator.generateID(), "Jebediah", 34, Athlete.States.NSW, Athlete.Event.CYCLING);
+		runJudge = new Referee(refIDGenerator.generateID(), "Peter", 56, Athlete.States.SA, Athlete.Event.RUNNING);
+		
 		allAthlete = tempList;
 		
 		resultHandler.setAthleteList(tempList);
@@ -58,6 +68,7 @@ public class Driver {
 		//Hard code Athlete.
 		athleteIDGenerator = new IDGenerator();
 		gameIDGenerator = new IDGenerator();
+		refIDGenerator = new IDGenerator();
 		allAthlete = new ArrayList<Athlete>();
 		resultHandler = new ResultHandler();
 		
@@ -107,21 +118,21 @@ public class Driver {
 				case 0: //quit
 					break;
 				case 1:
-					RunningGame runGame = new RunningGame(gameIDGenerator.generateID(), allAthlete);
+					RunningGame runGame = new RunningGame(gameIDGenerator.generateID(), allAthlete, runJudge);
 					if(runGame.competition()) {
 						resultHandler.addResult(runGame.getResult());
 					}
 					printGameOption();
 					break;
 				case 2: // Swim Game
-					SwimmingGame swimGame = new SwimmingGame(gameIDGenerator.generateID(), allAthlete);
+					SwimmingGame swimGame = new SwimmingGame(gameIDGenerator.generateID(), allAthlete, swimJudge);
 					if(swimGame.competition()) {
 						resultHandler.addResult(swimGame.getResult());
 					}
 					printGameOption();
 					break;
 				case 3: // Cycle Game
-					CyclingGame cycleGame = new CyclingGame(gameIDGenerator.generateID(), allAthlete);
+					CyclingGame cycleGame = new CyclingGame(gameIDGenerator.generateID(), allAthlete, cycleJudge);
 					if(cycleGame.competition()) {
 						resultHandler.addResult(cycleGame.getResult());
 					}

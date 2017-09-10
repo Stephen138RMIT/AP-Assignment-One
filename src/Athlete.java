@@ -4,6 +4,7 @@ public abstract class Athlete{
 	private String athleteName;
 	public enum Event{NONE, CYCLING, RUNNING, SWIMMING};
 	public enum AthleteType{CYCLIST, RUNNER, SWIMMER};
+	public enum States{VIC, WA, SA, QLD, NT, NSW};
 	private Event currentEvent;
 	private String athleteID;
 	
