@@ -202,6 +202,121 @@ public class Result {
 		}
 	}
 	
+	//Something like should go in a game loop.
+	//Similar to printScore except it will be delayed.
+	//Time can be optionally skipped.
+	
+	//Attempt to implement code from here
+	//https://stackoverflow.com/questions/3491027/java-console-code-for-stopwatch-timer
+	public void printScoreTimed() {
+		
+		
+		
+		if(canCompete()) {
+			Iterator<AthleteScore> scoreIterator = scoreList.iterator();
+			System.out.println();
+			System.out.println("Game ID : " + gameID);
+			System.out.println("Predicted Winner: " + predictedWinnerID + " Name: " + getAthleteName(predictedWinnerID));
+			printRefereeDetail();
+			//This keeps track of iteration for naming winner.
+			int i = 0;
+			System.out.println("************************************************");
+			
+			//Since this is already sorted, we delay. 
+			//Once the current time score elapse, go to next one
+			
+			int charsWritten = 0;
+			long start = System.currentTimeMillis();
+			//This keep track of current athlete timeScore.
+			double timeScore = 0;
+			boolean endTime = false;
+			
+			//Check if the iterator has stuff
+			if(scoreIterator.hasNext()) {
+				AthleteScore tempScore = scoreIterator.next();
+				printAthleteDetail(tempScore);
+				timeScore = tempScore.getTimeScore();
+			}else {
+				endTime = true;
+			}
+			
+			while (!endTime) {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				long elapsedTime = System.currentTimeMillis() - start;
+				elapsedTime = elapsedTime / 1000;
+				
+				String seconds = Integer.toString((int) elapsedTime % 60 );
+				String minutes = Integer.toString((int) elapsedTime % 3600);
+				
+				if(minutes == "2") {
+					endTime = true;
+				}
+				
+				if (seconds.length() < 2) {
+					seconds = "0" + seconds;
+				}
+				
+				if (minutes.length() < 2) {
+					minutes = "0" + minutes;
+				}
+				
+				//Doesn't work with eclipse, Assume it works normally.
+				String outputTime = minutes + ":" + seconds;
+				//Crude method of clearing away the console.
+				for(int charI = 0; i < charsWritten; i++) {
+					System.out.print("\b");
+				}
+				
+				System.out.print(outputTime);
+				charsWritten = outputTime.length();
+				
+				//Operate with iterator.
+				//When timeScore has been reached.
+				if(elapsedTime % 60 > timeScore) {
+					if(scoreIterator.hasNext()) {
+						AthleteScore tempScore = scoreIterator.next();
+						printAthleteDetail(tempScore);
+										
+						if(i == 0) {
+							//Seperation line
+							//1st Place
+							System.out.print(" Winner: 5 point");
+							i++;
+						}else if(i == 1) {
+							//2nd Place
+							System.out.print(" 2nd Place: 3 Point");
+							i++;
+						}else if(i == 2) {
+							//3rd Place
+							System.out.print(" 3rd Place: 1 Point");
+							i++;
+							//now that i is more than 2, There is no more winner.
+							//Print extra line for spacing
+							System.out.println();
+							System.out.println("---------------------------------------------");
+						}
+							
+							System.out.println();
+						System.out.println("************************************************");
+						
+					}else {
+						//There is no more score, end the time loop
+						endTime = true;
+						System.out.println();
+					}
+				}
+			}
+			
+		}
+	}
+	
+	
 	//Sort the list from highest to lowest.
 	public void sortList() {
 		//Use collection to sort, use comparator.

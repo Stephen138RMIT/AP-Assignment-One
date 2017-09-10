@@ -149,6 +149,20 @@ public class Driver {
 		
 		return currentResult;
 	}
+	
+	//Its really tricky having keyboard event handler that is not in swing environment, instead ask beforehand.
+	public boolean askQuestion() {
+		System.out.println("Skip waiting for result ?");
+		System.out.print("Enter 0 for yes, and anything else for no :");
+		int userInput;
+		userInput = sc.nextInt();
+		if(userInput == 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
 	public void gameMenu() {
 		int userIntInput = -1;
 		while(userIntInput != 0) {
@@ -165,7 +179,12 @@ public class Driver {
 					if(runGame.competition()) {
 						//While the winner are already determined under the hood the player can still predict.
 						resultHandler.addResult(predictWinner(runGame.getResult()));
-						runGame.getResult().printScore();
+						//Ask user if they wish to skip time.
+						if(askQuestion()) {
+							runGame.getResult().printScore();
+						}else {
+							runGame.getResult().printScoreTimed();
+						}
 					}
 					printGameOption();
 					break;
@@ -173,7 +192,12 @@ public class Driver {
 					SwimmingGame swimGame = new SwimmingGame(gameIDGenerator.generateID(), allAthlete, swimJudge);
 					if(swimGame.competition()) {
 						resultHandler.addResult(predictWinner(swimGame.getResult()));
-						swimGame.getResult().printScore();
+						
+						if(askQuestion()) {
+							swimGame.getResult().printScore();
+						}else {
+							swimGame.getResult().printScoreTimed();
+						}
 					}
 					printGameOption();
 					break;
@@ -181,7 +205,11 @@ public class Driver {
 					CyclingGame cycleGame = new CyclingGame(gameIDGenerator.generateID(), allAthlete, cycleJudge);
 					if(cycleGame.competition()) {
 						resultHandler.addResult(predictWinner(cycleGame.getResult()));
-						cycleGame.getResult().printScore();
+						if(askQuestion()) {
+							cycleGame.getResult().printScore();
+						}else {
+							cycleGame.getResult().printScoreTimed();
+						}
 					}
 					printGameOption();
 					break;
