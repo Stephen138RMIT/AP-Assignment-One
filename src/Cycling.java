@@ -12,7 +12,7 @@ public class Cycling {
 	
 	public double Cycle() {
 		double randomNum = ThreadLocalRandom.current().nextDouble(MINIMUM, MAXIMUM + 1);
-		System.out.printf("I Cycled : %.3f%n", randomNum);
+		//System.out.printf("I Cycled : %.3f%n", randomNum);
 		return randomNum;
 	}
 }

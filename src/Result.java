@@ -151,6 +151,10 @@ public class Result {
 	//Result stores top 3 winner.
 	//Gift points to athlete.
 	
+	public Athlete.Event getEvent(){
+		return gameEvent;
+	}
+	
 	//Similar to printScore, except it only show the winner.
 	public void printWinner() {
 		if(scoreList.size() < 6){

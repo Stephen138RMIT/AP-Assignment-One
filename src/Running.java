@@ -10,7 +10,7 @@ public class Running {
 	
 	public double Run() {
 		double randomNum = ThreadLocalRandom.current().nextDouble(MINIMUM, MAXIMUM + 1);
-		System.out.printf("I Ran : %.3f%n", randomNum);
+		//System.out.printf("I Ran : %.3f%n", randomNum);
 		return randomNum;
 	}
 }

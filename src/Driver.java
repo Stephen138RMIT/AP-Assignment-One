@@ -16,6 +16,7 @@ public class Driver {
 	//See IDGenerator for explanation.
 	private IDGenerator athleteIDGenerator;
 	private IDGenerator gameIDGenerator;
+	private Scanner sc;
 	
 	//This method create a working set of athletes.
 	//Its set this way so that allAthlete can be replaced again if another set is used.
@@ -59,6 +60,8 @@ public class Driver {
 		resultHandler = new ResultHandler();
 		
 		setMainAthlete();
+		
+		sc = new Scanner(System.in);
 	}
 	
 	public void Instruction() {
@@ -66,6 +69,8 @@ public class Driver {
 		System.out.println("0: quit");
 		System.out.println("1: Start Game");
 		System.out.println("2: Repeat Instruction");
+		System.out.println("3: Print all Athlet Name");
+		System.out.println("4: Print all final result");
 	}
 	
 	public void printAthleteName()
@@ -90,7 +95,6 @@ public class Driver {
 	}
 	
 	public void gameMenu() {
-		Scanner gameSC = new Scanner(System.in);
 		int userIntInput = -1;
 		while(userIntInput != 0) {
 			try{
@@ -109,43 +113,41 @@ public class Driver {
 					break;
 				case 2: // Swim Game
 					SwimmingGame swimGame = new SwimmingGame(gameIDGenerator.generateID(), allAthlete);
-					swimGame.competition();
+					if(swimGame.competition()) {
+						resultHandler.addResult(swimGame.getResult());
+					}
 					printGameOption();
 					break;
 				case 3: // Cycle Game
 					CyclingGame cycleGame = new CyclingGame(gameIDGenerator.generateID(), allAthlete);
-					cycleGame.competition();
+					if(cycleGame.competition()) {
+						resultHandler.addResult(cycleGame.getResult());
+					}
 					printGameOption();
 					break;
 				default:
 					System.out.println("Out of bound");
 				}
 				System.out.print("Input Integer: ");
-				userIntInput = gameSC.nextInt();
+				userIntInput = sc.nextInt();
 			}
 		
 			catch(InputMismatchException exception){
 				System.out.println("Input not Integer.");
-				gameSC.next();
+				sc.next();
 				userIntInput = -1;
 			}
 		}
-		gameSC.close();
-		System.out.println("exiting...");
+		Instruction();
+		//System.out.println("exiting...");
 		
 	}
 	
 	public void mainMenu() {
-		//For now simple interface
-		
-		Scanner sc = new Scanner(System.in);
-		//int userIntInput = sc.nextInt();
-		//System.out.println(userIntInput);
-		
 		
 		//This makes menu come up first.
 		int userIntInput = 2;
-		//Repeat until user specify two quit
+		//Repeat until user specify quit
 		while(userIntInput != 0) {
 			try{
 				switch(userIntInput) {
@@ -162,7 +164,12 @@ public class Driver {
 					Instruction();
 					break;
 				case 3:
+					//Eventually display point of all athlete.
 					printAthleteName();
+					break;
+				case 4:
+					//Display final result of all game
+					resultHandler.printLastCycleGame();
 					break;
 				default:
 					System.out.println("Out of bound");
